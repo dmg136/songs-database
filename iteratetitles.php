@@ -9,6 +9,20 @@ $con = mysql_connect('127.0.0.1', 'root', '1234567890') or die (mysql_error());
 
 mysql_select_db('songs', $con) or die (mysql_error());
 
+/*
+while (false !== ($tuneFile = readdir($tune)))
+{
+	echo "<a href=\"./tune/$tuneFile\"> $tuneFile </a><br />";
+}
+
+echo "<br />------------------------------<br />";
+
+while (false !== ($chordProFile = readdir($chordPro)))
+{
+	echo "<a href=\"./chordpro/$chordProFile\"> $chordProFile </a><br />";
+}
+*/
+
 $tempTune = null;
 $tempChord = null;
 

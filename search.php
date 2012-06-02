@@ -1,7 +1,11 @@
 <html>
 <br />Search songs<br />
 <form method="POST" enctype="multipart/form-data" action="result.php">
-Song Title: <input type="text" name="songTitle" size=61 maxlength=60 />
+<select name="searchType">
+	<option value="songTitle">Song Title:</option>
+	<option value="chorus">Chorus:</option>
+</select>
+<input type="text" name="searchTxt" size=61 maxlength=60 />
 <select name="filter">
 	<option value="contains">CONTAINS</option>
 	<option value="exact">EXACT</option>
