@@ -1,5 +1,5 @@
 <html>
-<br />Search songs<br />
+<b>Search songs</b><br />
 <form method="POST" enctype="multipart/form-data" action="result.php">
 <select name="searchType">
 	<option value="songTitle">Song Title:</option>
@@ -16,11 +16,12 @@
 </form>
 
 <form method="POST" enctype="multipart/form-data" action="displayAll.php">
-Display All Songs
+<b>Display All Songs</b>
 <br />
 <input type="submit" name="displayAll" value="Display All" />
 </form>
 
+<b>Letter Search</b><br />
 <a href="alphabetSearch.php?A">A</a>
 <a href="alphabetSearch.php?B">B</a>
 <a href="alphabetSearch.php?C">C</a>
@@ -47,4 +48,7 @@ Display All Songs
 <a href="alphabetSearch.php?X">X</a>
 <a href="alphabetSearch.php?Y">Y</a>
 <a href="alphabetSearch.php?Z">Z</a>
+<br />
+<br />
+<a href="http://tenbyten.com/software/songsgen/">Songsheet Generator</a>
 </html>

@@ -2,8 +2,9 @@
 
 <?php
 
-$con = mysql_connect('127.0.0.1', 'root', '1234567890') or die (mysql_error());
-mysql_select_db('songs', $con) or die (mysql_error());
+include 'database.php';
+
+$con = connect();
 
 print "You have submitted: <br />";
 
@@ -54,21 +55,15 @@ print "<br /> Press Back to submit another song <br />";
 <?php
 if (!empty($_POST['songTitle']))
 {
-	$con = mysql_connect('127.0.0.1', 'root', '1234567890') or die (mysql_error());
-	mysql_select_db('songs', $con) or die (mysql_error());
+	$con = connect();
 
 	$songTitle = mysql_real_escape_string($_POST['songTitle']);
 	
 	$sql="INSERT INTO song (sid, songTitle, tune, chordPro) VALUES (null,$songTitle,null,null')";
 
-	if (!mysql_query($sql, $con))
-	{
-		die (mysql_error());
-	}
-	else
-	{
-		mysql_close($con);
-	}
+	mysql_query($sql, $con) or die (mysql_error());
+
+	close($con);
 }
 else
 {
