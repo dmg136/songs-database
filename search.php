@@ -21,33 +21,21 @@
 <input type="submit" name="displayAll" value="Display All" />
 </form>
 
-<b>Letter Search</b><br />
-<a href="alphabetSearch.php?A">A</a>
-<a href="alphabetSearch.php?B">B</a>
-<a href="alphabetSearch.php?C">C</a>
-<a href="alphabetSearch.php?D">D</a>
-<a href="alphabetSearch.php?E">E</a>
-<a href="alphabetSearch.php?F">F</a>
-<a href="alphabetSearch.php?G">G</a>
-<a href="alphabetSearch.php?H">H</a>
-<a href="alphabetSearch.php?I">I</a>
-<a href="alphabetSearch.php?J">J</a>
-<a href="alphabetSearch.php?K">K</a>
-<a href="alphabetSearch.php?L">L</a>
-<a href="alphabetSearch.php?M">M</a>
-<a href="alphabetSearch.php?N">N</a>
-<a href="alphabetSearch.php?O">O</a>
-<a href="alphabetSearch.php?P">P</a>
-<a href="alphabetSearch.php?Q">Q</a>
-<a href="alphabetSearch.php?R">R</a>
-<a href="alphabetSearch.php?S">S</a>
-<a href="alphabetSearch.php?T">T</a>
-<a href="alphabetSearch.php?U">U</a>
-<a href="alphabetSearch.php?V">V</a>
-<a href="alphabetSearch.php?W">W</a>
-<a href="alphabetSearch.php?X">X</a>
-<a href="alphabetSearch.php?Y">Y</a>
-<a href="alphabetSearch.php?Z">Z</a>
+<?php
+$alpha = array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
+
+echo "<b>First Line Letter Search</b><br />";
+for ($a = 0; $a < 26; $a++)
+	echo "<a href=\"alphabetSearch.php?firstline=$alpha[$a]\"> $alpha[$a] </a>&nbsp";
+
+echo "<br /><br /> ";
+
+echo "<b>Chorus Letter Search</b><br />";
+for ($a = 0; $a < 26; $a++)
+	echo "<a href=\"alphabetSearch.php?chorus=$alpha[$a]\"> $alpha[$a] </a>&nbsp";
+
+?>
+
 <br />
 <br />
 <a href="http://tenbyten.com/software/songsgen/">Songsheet Generator</a>

@@ -1,8 +1,12 @@
 TODO
 - fix insert.php to actually insert into database
-- choruses for each song, maybe alternative titles?
+- lyrics without chords
+- search by first lines and choruses
+- html generation of chordpro files
+- maybe alternative titles?
 - have no punctuation/whitespace title?
 - consolidate result.php, alphabetSearch.php and displayAll.php
+- lyric search
 - implement categories?
 - typo correction?
 - have tune finder?
