@@ -1,11 +1,7 @@
 <html>
 <b>Search songs</b><br />
 <form method="POST" enctype="multipart/form-data" action="result.php">
-<select name="searchType">
-	<option value="songTitle">Song Title:</option>
-	<option value="chorus">Chorus:</option>
-</select>
-<input type="text" name="searchTxt" size=61 maxlength=60 />
+Song Title or Chorus: <input type="text" name="searchTxt" size=61 maxlength=60 />
 <select name="filter">
 	<option value="contains">CONTAINS</option>
 	<option value="exact">EXACT</option>
@@ -37,6 +33,9 @@ for ($a = 0; $a < 26; $a++)
 ?>
 
 <br />
+<br />
+<b>Links</b><br />
+<a href="./html/songs.htm">HTML songs</a>
 <br />
 <a href="http://tenbyten.com/software/songsgen/">Songsheet Generator</a>
 </html>

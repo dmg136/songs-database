@@ -1,8 +1,7 @@
 TODO
-- fix insert.php to actually insert into database
+- fix insert.php to actually insert into database (untested)
+- edit a song's info
 - lyrics without chords
-- search by first lines and choruses
-- html generation of chordpro files
 - maybe alternative titles?
 - have no punctuation/whitespace title?
 - consolidate result.php, alphabetSearch.php and displayAll.php
@@ -21,3 +20,7 @@ DOCUMENTATION
 - result.php displays results of search.php query
 - displayAll.php displays all songs in database
 - database.php contains functions
+- editform.php searches for a song to edit
+- pick.php displays results of editform.php query
+- edit.php allows user to edit the selected song's info
+- update.php updates the song's info

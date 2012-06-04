@@ -7,6 +7,12 @@ function connect($host = '127.0.0.1', $user='root', $pass='1234567890', $databas
 	return $conn;
 }
 
+function insert($connection, $songTitle, $songChorus, $tune, $chordPro, $author)
+{
+	$sql = sanitize("INSERT INTO song VALUES(null, $songTitle, $songChorus, $tune, $chordPro, $author)");
+	mysql_query($sql, $connection) or die (mysql_error());
+}
+
 function displayResults($sql)
 {
 	$tune = "./tune/";
@@ -34,6 +40,42 @@ function displayResults($sql)
 		echo "</tr>";
 	}
 	echo "</table>";
+}
+
+function pickResult($sql)
+{
+	$tune = "./tune/";
+	$chordPro = "./chordpro/";
+
+	//display columns
+	echo "<form enctype=\"multipart/form-data\" action=\"edit.php\">";
+	echo "<table border=4 cellspacing=5 cellpadding=5>";
+	echo "<tr>";
+	echo "<td></td>";
+	echo "<td><b> Song Title </b></td>";
+	echo "<td><b> Song Chorus </b></td>";
+	echo "<td><b> Tune </b></td>";
+	echo "<td><b> ChordPro </b></td>";
+	echo "<td><b> Author </b></td>";
+	echo "</tr>";
+	
+	//display results
+	while ($row = mysql_fetch_array($sql))
+	{
+		echo "<tr>";
+		echo "<td>";
+		echo "<input type=\"radio\" name=\"result\" value=\"" . $row['sid'] . "\" /><br />";
+		echo "</td>";
+		echo "<td>" . $row['songTitle'] . "</td>";
+		echo "<td>" . $row['songChorus'] . "</td>";
+		echo "<td><a href=\"" . $tune . $row['tune'] . "\">" . $row['tune'] . "</a></td>";
+		echo "<td><a href=\"" . $chordPro . $row['chordPro'] . "\">" . $row['chordPro'] . "</a></td>";
+		echo "<td>" . $row['author'] . "</td>";
+		echo "</tr>";
+	}
+
+	echo "</table>";
+	echo "</form>";
 }
 
 function sanitize($str)

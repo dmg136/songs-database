@@ -4,72 +4,39 @@
 
 include 'database.php';
 
-$con = connect();
-
 print "You have submitted: <br />";
 
-if (!empty($_POST['author']))
-{
-	$author = $_POST['author'];
-	print "Author: $author <br />";
-}
-else
-	print "No author <br />";
-	
 if (!empty($_POST['songTitle']))
 {
-	$songTitle = $_POST['songTitle'];
+	$con = connect();
 	
-	$sql=mysql_query("INSERT INTO song (sid, songTitle, tune, chordPro) VALUES (null, $songTitle, null, null") or die (mysql_error());
+	$songTitle = sanitize($_POST['songTitle']);
+	$songChorus = null;
+	$tune = null;
+	$chordPro = null;
+	$author = null;
 	
-	print "Song Title: $songTitle <br />";
+	if (!empty($_POST['songChorus']))
+		$songChorus = sanitize($_POST['songChorus']);
+	
+	if (!empty($_POST['tune']))
+		$tune = sanitize($_POST['tune']);
+		
+	if (!empty($_POST['chordPro']))
+		$chordPro = sanitize($_POST['chordPro']);
+	
+	if (!empty($_POST['author']))
+		$author = sanitize($_POST['author']);
+	
+	insert($con, $songTitle, $songChorus, $tune, $chordPro, $author);
 }
 else
-	print "No song title <br />";
-	
-if (!empty($_POST['songChorus']))
 {
-	$chorus = $_POST['songChorus'];
-	print "Chorus: $chorus <br />";
+	echo "Must input song title<br />";
 }
-else
-	print "No chorus <br />";
-	
-if (!empty($_FILES['chordPro']['name']))
-{
-	$chordPro = $_FILES['chordPro']['name'];
-	print "ChordPro file: $chordPro <br />";
-}
-else
-	print "No ChordPro file <br />";
-	
-print "<br /> Press Back to submit another song <br />";
-
-
 ?>
 
 <form action="songbookform.php">
 <input type="submit" value="Back" /><br />
 </form>
-
-<?php
-if (!empty($_POST['songTitle']))
-{
-	$con = connect();
-
-	$songTitle = mysql_real_escape_string($_POST['songTitle']);
-	
-	$sql="INSERT INTO song (sid, songTitle, tune, chordPro) VALUES (null,$songTitle,null,null')";
-
-	mysql_query($sql, $con) or die (mysql_error());
-
-	close($con);
-}
-else
-{
-	print "<br />did not submit song<br />";
-}
-
-?>
-
 </html>
