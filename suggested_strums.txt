@@ -1,0 +1,16 @@
+1 - standard
+down pause down up pause up down up
+1    (+)   2    +  (3)   +  4    +
+
+
+2 - gallop
+down pause down up down pause down up
+1    (+)   2    +   1   (+)   2    +
+
+
+3 - skip
+down pause down up down up down pause down up down up
+1    (+)   2    +  3    +  1    (+)   2    +   3   +
+
+
+4 - follows the lyrics
