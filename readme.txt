@@ -26,6 +26,7 @@ DOCUMENTATION
 - insert.php inserts songbookform.htm POST data into database
 - search.php searches database by song title
 - result.php displays results of search.php query
+- result_inline.php displays results with inline midi and lyrics
 - displayAll.php displays all songs in database
 - database.php contains functions
 - editform.php searches for a song to edit

@@ -10,10 +10,18 @@ Song Title or Chorus: <input type="text" name="searchTxt" size=61 maxlength=60 /
 <br />
 OR
 <br />
-Lyric Search (may take a while): <input type="text" name="searchLyrics" size=61 maxlength=60 />
+Lyric Search: <input type="text" name="searchLyrics" size=61 maxlength=60 />
 <br />
 <input type="submit" name="submit" value="Submit" />
 </form>
+
+<!-- This allows user to play midis inline -->
+<form method="POST" enctype="multipart/form-data" action="result_inline.php">
+Lyric Search Inline Results (may take a while): <input type="text" name="searchLyricsInline" size=61 maxlength=60 />
+<br />
+<input type="submit" name="submitInline" value="Submit" />
+</form>
+
 <form method="POST" enctype="multipart/form-data" action="displayAll.php">
 <b>Display All Songs</b>
 <br />

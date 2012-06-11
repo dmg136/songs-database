@@ -90,6 +90,17 @@ function displayResults($sql)
 	echo "</table>";
 }
 
+function displayLyrics($lyrics)
+{
+	$chordPro = "./chordpro/";
+	$dir = $chordPro . $lyrics;
+	$file = file_get_contents($dir, FILE_IGNORE_NEW_LINES) or die("Can't open $lyrics");
+	$fileNoChords = preg_replace("/\[(.*?)\]/", "", $file);
+	$fileNoBraces = preg_replace("/\{(.*?)\}/", "", $fileNoChords);
+	
+	echo "<td><textarea name=\"lyrics\" cols=\"45\" rows=\"4\">" . ltrim($fileNoBraces) . "</textarea></td>";
+}
+
 function pickResult($sql)
 {
 	$tune = "./tune/";

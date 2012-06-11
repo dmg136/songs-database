@@ -26,9 +26,9 @@ if (!empty($_POST['searchTxt']))
 		
 	displayResults($sql);
 }
-else if (!empty($_POST['searchLyrics']))
+else if (!empty($_POST['searchLyricsInline']))
 {
-	$keyWords = sanitize($_POST['searchLyrics']);
+	$keyWords = sanitize($_POST['searchLyricsInline']);
 	$results = array();
 	
 	//sql query for all songs
@@ -42,7 +42,7 @@ else if (!empty($_POST['searchLyrics']))
 		$line = $row['chordPro'];
 		$dir = $chordPro . $line;
 		//read .txt file into string
-		$file = file_get_contents($dir, FILE_IGNORE_NEW_LINES) or die("Can't open $dir");
+		$file = file_get_contents($dir) or die("Can't open $dir");
 		//$fileNoChords = preg_replace("/\[[A-Za-z#]*[0-9]*\]/", "", $file);
 		$fileNoChords = preg_replace("/\[(.*?)\]/", "", $file);
 		
@@ -77,8 +77,8 @@ else if (!empty($_POST['searchLyrics']))
 		echo "<tr>";
 		echo "<td>" . $row['songTitle'] . "</td>";
 		echo "<td>" . $row['songChorus'] . "</td>";
-		echo "<td><a href=\"" . $tune . $row['tune'] . "\">" . $row['tune'] . "</a></td>";
-		echo "<td><a href=\"" . $chordPro . $row['chordPro'] . "\">" . $row['chordPro'] . "</a></td>";
+		echo "<td><object height=\"50px\" width=\"100px\" data=\"./tune/" . $row['tune'] . "\" /><param name=\"autoplay\" value=\"false\"></td>";
+		displayLyrics($row['chordPro']);
 		echo "<td>" . $row['author'] . "</td>";
 		echo "<td>" . $row['strum'] . "</td>";
 		echo "</tr>";
