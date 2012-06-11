@@ -1,6 +1,8 @@
 TODO
-- instead of hyperlink for midi, have inline play button?
+- instead of hyperlink for midi, have inline play button
 	- make sure even supported on older browsers/computers
+- backup database function
+- untested function importDatabase in database.php
 - better strum videos
 - have search bar on top of results.php?
 - have letter search on top of results.php?
