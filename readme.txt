@@ -1,7 +1,5 @@
 TODO
 - in generatepage.php
-	- make search box working (lyric search or simple search?)
-	- create abc links for "First line or chorus links"
 	- better looking webpages
 - instead of hyperlink for midi, have inline play button
 	- make sure even supported on older browsers/computers
