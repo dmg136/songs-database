@@ -66,7 +66,7 @@ else if (!empty($_POST['searchLyrics']))
 	}
 	
 	//displayResults
-	displayColumns();
+	//displayColumns();
 	for ($i = 0; $i < sizeof($results); $i++)
 	{
 		$sid = $results[$i];
@@ -74,13 +74,10 @@ else if (!empty($_POST['searchLyrics']))
 		$tempRow = mysql_query($tempSQL, $con);
 		$row = mysql_fetch_array($tempRow);
 		
+		$rowNoSpaces = preg_replace("/\s/", "", strtoupper($row['songTitle']));
+		$rowNoPunctuation = preg_replace("/[\!\?;.,'-]/", "", $rowNoSpaces);
 		echo "<tr>";
-		echo "<td>" . $row['songTitle'] . "</td>";
-		echo "<td>" . $row['songChorus'] . "</td>";
-		echo "<td><a href=\"" . $tune . $row['tune'] . "\">" . $row['tune'] . "</a></td>";
-		echo "<td><a href=\"" . $chordPro . $row['chordPro'] . "\">" . $row['chordPro'] . "</a></td>";
-		echo "<td>" . $row['author'] . "</td>";
-		echo "<td>" . $row['strum'] . "</td>";
+		echo "<td><br /><a href=\"./pages/" . $rowNoPunctuation . ".htm\">" . $row['songTitle'] . "</a><br /></td>";
 		echo "</tr>";
 	}
 	echo "</table>";

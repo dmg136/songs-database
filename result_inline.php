@@ -77,8 +77,9 @@ else if (!empty($_POST['searchLyricsInline']))
 		echo "<tr>";
 		echo "<td>" . $row['songTitle'] . "</td>";
 		echo "<td>" . $row['songChorus'] . "</td>";
-		echo "<td><object height=\"50px\" width=\"100px\" data=\"./tune/" . $row['tune'] . "\" /><param name=\"autoplay\" value=\"false\"></td>";
-		displayLyrics($row['chordPro']);
+		echo "<td><object height=\"50px\" width=\"100px\" data=\"./tune/" . $row['tune'] . "\" /><param name=\"autoplay\" value=\"false\"></object></td>";
+		$tempLyrics = displayLyrics($row['chordPro']);
+		echo $tempLyrics;
 		echo "<td>" . $row['author'] . "</td>";
 		echo "<td>" . $row['strum'] . "</td>";
 		echo "</tr>";

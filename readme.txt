@@ -1,4 +1,8 @@
 TODO
+- in generatepage.php
+	- make search box working (lyric search or simple search?)
+	- create abc links for "First line or chorus links"
+	- better looking webpages
 - instead of hyperlink for midi, have inline play button
 	- make sure even supported on older browsers/computers
 - backup database function
@@ -13,16 +17,18 @@ TODO
 - edit a song's info (insert into database not done yet, update.php)
 -------------------------------------------------------
 - maybe alternative titles?
-- have no punctuation/whitespace title?
 - consolidate result.php, alphabetSearch.php and displayAll.php
 - implement categories? (e.g. Loving the Lord, Praising, etc)
 - typo correction? (if no results, then run typo corrector)
 - have tune finder?
 - GUI database
 - GUI chordpro maker (easy to make chordpro generator, click chords to syllables)
+	- or computer-synthesized singing (user-composed) with user chord matching
 - interactive songbook creator (pick chordpro songs, generate html and have pages where user can move songs around and format to their liking)
 
 DOCUMENTATION
+- difference from songs_database_table:
+	- results displayed by song title, each linked to separate page with all the info: tune, lyrics, chordPro, strum, etc
 - iteratetitles.php goes through titles.txt, choruses.txt, strum.txt, tune directory, and chordpro directory and inserts entries into database
 - songbookform.php inserts single entry into database
 - insert.php inserts songbookform.htm POST data into database

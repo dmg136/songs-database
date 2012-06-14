@@ -72,19 +72,15 @@ function displayResults($sql)
 	$chordPro = "./chordpro/";
 
 	//display columns
-	displayColumns();
+	//displayColumns();
 
 	//display results
 	while ($row = mysql_fetch_array($sql))
 	{
+		$rowNoSpaces = preg_replace("/\s/", "", strtoupper($row['songTitle']));
+		$rowNoPunctuation = preg_replace("/[\!\?;.,'-]/", "", $rowNoSpaces);
 		echo "<tr>";
-		echo "<td>" . $row['songTitle'] . "</td>";
-		echo "<td>" . $row['songChorus'] . "</td>";
-		echo "<td><a href=\"" . $tune . $row['tune'] . "\">" . $row['tune'] . "</a></td>";
-		//echo "<td><object height=\"50px\" width=\"150px\" data=\"./tune/" . $row['tune'] . "\" /><param name=\"autostart\" value=\"false\"></td>";
-		echo "<td><a href=\"" . $chordPro . $row['chordPro'] . "\">" . $row['chordPro'] . "</a></td>";
-		echo "<td>" . $row['author'] . "</td>";
-		echo "<td>" . $row['strum'] . "</td>";
+		echo "<td><br /><a href=\"./pages/" . $rowNoPunctuation . ".htm\">" . $row['songTitle'] . "</a><br /></td>";
 		echo "</tr>";
 	}
 	echo "</table>";
@@ -98,7 +94,9 @@ function displayLyrics($lyrics)
 	$fileNoChords = preg_replace("/\[(.*?)\]/", "", $file);
 	$fileNoBraces = preg_replace("/\{(.*?)\}/", "", $fileNoChords);
 	
-	echo "<td><textarea name=\"lyrics\" cols=\"45\" rows=\"4\">" . ltrim($fileNoBraces) . "</textarea></td>";
+	$tempLyrics = "<td><textarea readonly=\"true\" name=\"lyrics\" cols=\"45\" rows=\"4\">" . ltrim($fileNoBraces) . "</textarea></td>";
+	
+	return $tempLyrics;
 }
 
 function pickResult($sql)
