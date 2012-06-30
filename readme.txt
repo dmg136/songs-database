@@ -1,4 +1,5 @@
 TODO
+- update database.php display results in asc order
 - in generatepage.php
 	- better looking webpages
 - instead of hyperlink for midi, have inline play button
@@ -9,10 +10,10 @@ TODO
 - have search bar on top of results.php?
 - have letter search on top of results.php?
 - cache lyric search results (common words)
-- fix insert.php to actually insert into database (untested)
-	- for tune and chordpro, move file to server's ./tune/<name> or ./chordpro/<name> and when inserting into database, only store <name>
-	http://www.w3schools.com/php/php_file_upload.asp
-- edit a song's info (insert into database not done yet, update.php)
+- insert functionality
+	- auto generate html page after successfully inserting?
+	- if have author, change null to $author in database.php's insert method
+- edit a song's info (update.php)
 -------------------------------------------------------
 - maybe alternative titles?
 - consolidate result.php, alphabetSearch.php and displayAll.php

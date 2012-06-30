@@ -7,36 +7,56 @@ function connect($host = '127.0.0.1', $user='root', $pass='1234567890', $databas
 	return $conn;
 }
 
-function insert($connection, $songTitle, $songChorus, $tune, $chordPro, $author, $strum)
+function insert($connection, $songTitle, $songChorus, $tune, $tempTune, $chordPro, $tempChordPro, $author, $strum)
 {
+	$tuneDir = null;
+	$chordProDir = null;
+	$tuneNotExist = true;
+	$chordProNotExist = true;
 
-	if ($_FILES["tune"]["type"] !== "audio/midi")
-		$tune = null;
+	if ($tune != null)
+	{
+		$tuneDir = "./tune/" . 	$tune;
 		
-	if ($_FILES["chordPro"]["type"] !== "text/plain")
-		$chordPro = null;
-
-	if (file_exists("./tune/" . $_FILES["tune"]["name"]))
-	{
+		if (file_exists($tuneDir))
+		{
+			$tuneNotExist = false;
+		}
+		else
+		{
+			move_uploaded_file($tempTune, $tuneDir);
+		}
 	}
-	else
+
+	if ($chordPro != null)
 	{
-		//strip directory from name --- to be written
-		$noDirName = null;
-		move_uploaded_file($_FILES["tune"]["tmp_name"], "./tune/" . $_FILES["tune"]["name"]);
+		$chordProDir = "./chordpro/" . $chordPro;
+		
+		if (file_exists($chordProDir))
+		{
+			$chordProNotExist = false;
+		}
+		else
+		{
+			move_uploaded_file($tempChordPro, $chordProDir);
+		}
 	}
 	
-	if (file_exists("./chordpro/" . $_FILES["chordPro"]["name"]))
+	if ($tuneNotExist && $chordProNotExist)
 	{
+		$sql = "INSERT INTO song VALUES(null, \"$songTitle\", \"$songChorus\", \"$tune\", \"$chordPro\", null, \"$strum\")";
+		mysql_query($sql, $connection) or die (mysql_error());
 	}
 	else
 	{
-		//strip directory from name --- to be written
-		$noDirName = null;
-		move_uploaded_file($_FILES["chordPro"]["tmp_name"], "./chordpro/" . $_FILES["chordPro"]["name"]);
+		print "tune: $tune<br />";
+		print "tune Dir: $tuneDir<br />";
+		print "tempTune: $tempTune<br />";
+		print "chordpro: $chordPro<br />";
+		print "chordpro Dir: $chordProDir<br />";
+		print "tempChordPro: $tempChordPro<br />";
+		print "tune exists and/or chordpro exists<br />";
 	}
-	$sql = sanitize("INSERT INTO song VALUES(null, $songTitle, $songChorus, $tune, $chordPro, $author)");
-	mysql_query($sql, $connection) or die (mysql_error());
 }
 
 function displayStrums()
@@ -141,7 +161,7 @@ function close($con)
 function backupDatabase()
 {
 	$con = connect();
-	$sql = "SELECT * from song";
+	$sql = "SELECT * from song ORDER BY songTitle";
 	$query = mysql_query($sql, $con) or die ("Can't query table song");
 	$file = fopen("backup.database", 'w') or die ("Can't open backup.database");
 	

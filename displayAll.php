@@ -8,7 +8,7 @@ include 'database.php';
 
 $con = connect();
 
-$sql=mysql_query("SELECT * FROM song") or die (mysql_error());
+$sql=mysql_query("SELECT * FROM song ORDER BY songTitle") or die (mysql_error());
 
 displayResults($sql);
 

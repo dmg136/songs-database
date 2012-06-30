@@ -16,7 +16,7 @@ if (strpos($letter, 'FIRSTLINE') !== false)
 	
 	if (strlen($temp) == 1)
 	{
-		$sql=mysql_query("SELECT * FROM song WHERE UPPER(songTitle) LIKE \"$temp%\"") or die (mysql_error());
+		$sql=mysql_query("SELECT * FROM song WHERE UPPER(songTitle) LIKE \"$temp%\" ORDER BY songTitle") or die (mysql_error());
 	
 		displayResults($sql);
 	}
