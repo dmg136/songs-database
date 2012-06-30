@@ -11,7 +11,7 @@ Strum: <select name="strum">
 		<option value="4">4</option>
 		</select><br />
 <label for="tune">Upload Tune:</label> <input type="file" name="tune" id="tune" size=60 /><br />
-<label for="chordPro">Upload ChordPro file:</label> <input type="file" name="chordPro" id="chordPro" size=60 /><br />
+<label for="chordPro"><b>Upload ChordPro file:</b></label> <input type="file" name="chordPro" id="chordPro" size=60 /><br />
 <input type="submit" name="submit" value="Submit" />
 </form>
 

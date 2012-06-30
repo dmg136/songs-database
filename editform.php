@@ -9,6 +9,10 @@ Song Title or Chorus: <input type="text" name="searchTxt" size=61 maxlength=60 /
 	<option value="begins">BEGINS</option>
 </select>
 <br />
+OR
+<br />
+Lyric Search: <input type="text" name="searchLyrics" size=61 maxlength=60 />
+<br />
 <input type="submit" name="submit" value="Submit" />
 </form>
 

@@ -12,8 +12,10 @@ TODO
 - cache lyric search results (common words)
 - insert functionality
 	- auto generate html page after successfully inserting?
-	- if have author, change null to $author in database.php's insert method
+	- make sure if have no tune/chordpro no errors
 - edit a song's info (update.php)
+	- delete old tune and chordpro files?
+	- make sure if have no tune/chordpro no errors
 -------------------------------------------------------
 - maybe alternative titles?
 - consolidate result.php, alphabetSearch.php and displayAll.php

@@ -4,7 +4,7 @@
 
 include 'database.php';
 
-if (!empty($_POST['songTitle']))
+if (!empty($_POST['songTitle']) && !empty($_FILES['chordPro']['name']))
 {
 	$con = connect();
 	
@@ -42,11 +42,11 @@ if (!empty($_POST['songTitle']))
 	}
 	
 	insert($con, $songTitle, $songChorus, $tune, $temp1, $chordPro, $temp2, $author, $strum);
-	print "You have submitted $_POST['songTitle']<br />";
+	print "You have submitted " . $_POST['songTitle'] . "<br />";
 }
 else
 {
-	echo "Must input song title<br />";
+	echo "Must input song title and make chord pro file<br />";
 }
 ?>
 
