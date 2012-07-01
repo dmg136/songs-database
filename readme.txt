@@ -1,21 +1,21 @@
 TODO
-- update database.php display results in asc order
+- edit a song's info (update.php)
+	- restrict inserts to audio/* and text
+	- make sure if have no tune/chordpro no errors
+- insert functionality
+	- restrict inserts to audio/* and text
+	- auto generate html page after successfully inserting?
+	- make sure if have no tune/chordpro no errors
 - in generatepage.php
 	- better looking webpages
-- instead of hyperlink for midi, have inline play button
-	- make sure even supported on older browsers/computers
-- backup database function
-- untested function importDatabase in database.php
+- backup database function in database.php (untested)
+- import database function in database.php (untested)
 - better strum videos
 - have search bar on top of results.php?
 - have letter search on top of results.php?
 - cache lyric search results (common words)
-- insert functionality
-	- auto generate html page after successfully inserting?
-	- make sure if have no tune/chordpro no errors
-- edit a song's info (update.php)
-	- delete old tune and chordpro files?
-	- make sure if have no tune/chordpro no errors
+- make sure inline play button even supported on older browsers/computers
+
 -------------------------------------------------------
 - maybe alternative titles?
 - consolidate result.php, alphabetSearch.php and displayAll.php

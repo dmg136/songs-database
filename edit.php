@@ -50,8 +50,9 @@ if (!empty($_POST['result']))
 	echo "Re-upload Tune? <select name=\"reloadTune\">";
 	echo "  <option value=\"no\">no</option>";
 	echo "  <option value=\"yes\">yes</option>";
+	echo "  <option value=\"delete\">delete</option>";
 	echo "</select>&nbsp";
-	echo "<textarea readonly=\"true\" name=\"tuneTxt\" cols=\"60\" rows=\"1\">" . $pick['tune'] . "</textarea><br />";
+	echo "Current Tune: <textarea readonly=\"true\" name=\"tuneTxt\" cols=\"60\" rows=\"1\">" . $pick['tune'] . "</textarea><br />";
 	echo "Upload Tune: <input type=\"file\" name=\"tune\" size=60 /><br />";
 	echo "<br />";
 	
@@ -59,7 +60,7 @@ if (!empty($_POST['result']))
 	echo "  <option value=\"no\">no</option>";
 	echo "  <option value=\"yes\">yes</option>";
 	echo "</select>&nbsp";
-	echo "<textarea readonly=\"true\" name=\"chordProTxt\" cols=\"60\" rows=\"1\">" . $pick['chordPro'] . "</textarea><br />";
+	echo "Current ChordPro: <textarea readonly=\"true\" name=\"chordProTxt\" cols=\"60\" rows=\"1\">" . $pick['chordPro'] . "</textarea><br />";
 	echo "Upload ChordPro file: <input type=\"file\" name=\"chordPro\" size=60 /><br />";
 	
 	echo "<input type=\"submit\" name=\"submit\" value=\"Submit\" />";

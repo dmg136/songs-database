@@ -13,7 +13,9 @@ print "Song Chorus: " . $_POST['songChorus'] . "<br />";
 print "Strum: " . $_POST['strum'] . "<br />";
 print "Author: " . $_POST['author'] . "<br />";
 
-if (!empty($_FILES['tune']['name']))
+if ($_POST['reloadTune'] == "delete")
+	print "Tune deleted<br />";
+else if (!empty($_FILES['tune']['name']))
 	print "Tune: " . $_FILES['tune']['name'] . "<br />";
 else
 	print "Tune not changed<br />";
@@ -32,68 +34,91 @@ $row = mysql_fetch_array($result);
 
 print "---------------------------<br />";
 
-$songTitleChanged = false;
-$chorusChanged = false;
-$tuneChanged = false;
-$chordProChanged = false;
-$authorChanged = false;
-$strumChanged = false;
-
 if (!empty($_POST['songTitle']))
 {
 	if (strcmp($row['songTitle'], $_POST['songTitle']) != 0)
 	{
-		$songTitleChanged = true;
+		$updateSql = "UPDATE song SET songTitle=\"" . $_POST['songTitle'] . "\" WHERE sid=\"" . $_POST['sid'] . "\"";
+		mysql_query($updateSql, $con) or die ("Couldn't use query update");
 	}
+	
 }
 if (!empty($_POST['songChorus']))
 {
 	if (strcmp($row['songChorus'], $_POST['songChorus']) != 0)
 	{
-		$chorusChanged = true;
+		$updateSql = "UPDATE song SET songChorus=\"" . $_POST['songChorus'] . "\" WHERE sid=\"" . $_POST['sid'] . "\"";
+		mysql_query($updateSql, $con) or die ("Couldn't use query update");
 	}
 }
-if (!empty($_FILES['tune']['name']))
+else
+{
+	$updateSql = "UPDATE song SET songChorus=null WHERE sid=\"" . $_POST['sid'] . "\"";
+	mysql_query($updateSql, $con) or die ("Couldn't use query update");
+}
+
+if ($_POST['reloadTune'] == "delete" && $row['tune'] != null)
+{
+	$tuneDir = "./tune/" . $row['tune'];
+	unlink($tuneDir);
+	
+	$updateSql = "UPDATE song SET tune=null WHERE sid=\"" . $_POST['sid'] . "\"";
+	mysql_query($updateSql, $con) or die ("Couldn't use query update");
+}
+else if (!empty($_FILES['tune']['name']) && $_POST['reloadTune'] == "yes")
 {
 	if (strcmp($row['tune'], $_FILES['tune']['name']) != 0)
 	{
-		$tuneChanged = true;
+		$tuneDir = "./tune/" . $_FILES['tune']['name'];
+		$tempTune = $_FILES['tune']['tmp_name'];
+		move_uploaded_file($tempTune, $tuneDir);
+		
+		$updateSql = "UPDATE song SET tune=\"" . $_FILES['tune']['name'] . "\" WHERE sid=\"" . $_POST['sid'] . "\"";
+		mysql_query($updateSql, $con) or die ("Couldn't use query update");
 	}
 }
-if (!empty($_FILES['chordPro']['name']))
+
+if (!empty($_FILES['chordPro']['name']) && $_POST['reloadChordPro'] == "yes")
 {
 	if (strcmp($row['chordPro'], $_FILES['chordPro']['name']) != 0)
 	{
-		$chordProChanged = true;
+		$chordProDir = "./chordpro/" . $_FILES['chordPro']['name'];
+		$tempChordPro = $_FILES['chordPro']['tmp_name'];
+		move_uploaded_file($tempChordPro, $chordProDir);
+		
+		if ($row['chordPro'] != null)
+		{
+			$chordProDir = "./chordpro/" . $row['chordPro'];
+			unlink($chordProDir);
+		}
+	
+		$updateSql = "UPDATE song SET chordPro=\"" . $_FILES['chordPro']['name'] . "\" WHERE sid=\"" . $_POST['sid'] . "\"";
+		mysql_query($updateSql, $con) or die ("Couldn't use query update");
 	}
 }
+
 if (!empty($_POST['author']))
 {
 	if (strcmp($row['author'], $_POST['author']) != 0)
 	{
-		$authorChanged = true;
+		$updateSql = "UPDATE song SET author=\"" . $_POST['author'] . "\" WHERE sid=\"" . $_POST['sid'] . "\"";
+		mysql_query($updateSql, $con) or die ("Couldn't use query update");
 	}
 }
+else
+{
+	$updateSql = "UPDATE song SET author=null WHERE sid=\"" . $_POST['sid'] . "\"";
+	mysql_query($updateSql, $con) or die ("Couldn't use query update");
+}
+
 if (!empty($_POST['strum']))
 {
 	if (strcmp($row['strum'], $_POST['strum']) != 0)
 	{
-		$strumChanged = true;
+		$updateSql = "UPDATE song SET strum=\"" . $_POST['strum'] . "\" WHERE sid=\"" . $_POST['sid'] . "\"";
+		mysql_query($updateSql, $con) or die ("Couldn't use query update");
 	}
 }
-
-if ($songTitleChanged || $chorusChanged || $tuneChanged || $chordProChanged || $authorChanged || $strumChanged)
-{
-	//test this later
-	$updateSql = "UPDATE song SET songTitle=\"" . $_POST['songTitle'] . "\",
-									songChorus=\"" . $_POST['songChorus'] . "\",
-									tune=\"" . $_FILES['tune']['name'] . "\",
-									chordPro=\"" . $_FILES['chordPro']['name'] . "\",
-									author=\"" . $_POST['author'] . "\",
-									strum=\"" . $_POST['strum'] . "\"
-									WHERE sid=\"" . $_POST['sid'] . "\"";
-	$updateQuery = mysql_query($updateSql, $con) or die ("Couldn't use query update");
-} 
 
 close($con);
 ?>
